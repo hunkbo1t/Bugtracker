@@ -1,4 +1,9 @@
 'use strict';
+const mongoose = require("mongoose");
+let mongodb = require("mongodb");
+const IssueModel = require{"../models"}.Issue;
+const ProjectModel = require{"../models"}.Project;
+
 
 module.exports = function (app) {
 
