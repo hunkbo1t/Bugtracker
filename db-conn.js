@@ -1,7 +1,15 @@
 const mongoose = require("mongoose");
-const db = mongoose.connect(process.env.db,{
-    useUnidentifiedTopology: true,
-    useNewUrlParser: true,
-})
-
-module.exports = db;
+module.exports = async function conn(){
+    try{
+        const connParams = {
+            useUnidentifiedTopology: true,
+            useNewUrlParser: true,
+            useFindAndModify: false,
+            useCreateIndex: true
+        };
+        await mongoose.connect(process.env.URL, connParams);
+        console.log('************* Database Connected *************');
+        }catch(err){
+    console.log('######### Fail to connect DB #########' + err);
+    }
+};

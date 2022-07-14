@@ -4,13 +4,18 @@ const express     = require('express');
 const bodyParser  = require('body-parser');
 const expect      = require('chai').expect;
 const cors        = require('cors');
+const multer      = require('multer');
+let fs            = require('fs');
+let path          = require('path');
 require('dotenv').config();
-require("./db-conn");
+const conn        = require("./db-conn");
 
 const apiRoutes         = require('./routes/api.js');
 const fccTestingRoutes  = require('./routes/fcctesting.js');
 const runner            = require('./test-runner');
 const { default: helmet } = require('helmet');
+
+const storage = multer.diskStorage
 
 let app = express();
 
@@ -21,9 +26,9 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(helmet.xssFilter());
-
+app.set('view engine','ejs');
 //Sample front-end
 app.route('/:project/')
   .get(function (req, res) {
