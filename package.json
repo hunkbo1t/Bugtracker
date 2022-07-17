@@ -1,7 +1,7 @@
 {
-	"name": "fcc-issue-tracker",
-	"version": "1.0.0",
-	"description": "Issue Tracker Boilerplate",
+	"name": "bug-tracker",
+	"version": "1.0",
+	"description": "####Bug-Tracker-application-with-MERN-framework####",
 	"main": "server.js",
 	"scripts": {
 		"start": "node server.js",
@@ -24,12 +24,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/freeCodeCamp/boilerplate-project-issuetracker"
+		"url": "https://github.com/hunkbo1t/Bugtracker"
 	},
 	"keywords": [
 		"node",
-		"hyperdev",
-		"express"
+		"react",
+		"express",
+		"javascript",
+		"mongodb-atlas"
 	],
 	"license": "MIT"
 }
