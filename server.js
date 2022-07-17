@@ -1,18 +1,18 @@
 'use strict';
 
-const express     = require('express');
-const bodyParser  = require('body-parser');
-const expect      = require('chai').expect;
-const cors        = require('cors');
-const multer      = require('multer');
-let fs            = require('fs');
-let path          = require('path');
+const express = require('express');
+const bodyParser = require('body-parser');
+const expect = require('chai').expect;
+const cors = require('cors');
+const multer = require('multer');
+let fs = require('fs');
+let path = require('path');
 require('dotenv').config();
-const conn        = require("./db-conn");
+const conn = require("./db-conn");
 
-const apiRoutes         = require('./routes/api.js');
-const fccTestingRoutes  = require('./routes/fcctesting.js');
-const runner            = require('./test-runner');
+const apiRoutes = require('./routes/api.js');
+const fccTestingRoutes = require('./routes/fcctesting.js');
+const runner = require('./test-runner');
 const { default: helmet } = require('helmet');
 
 const storage = multer.diskStorage
@@ -21,14 +21,14 @@ let app = express();
 
 app.use('/public', express.static(process.cwd() + '/public'));
 
-app.use(cors({origin: '*'})); //For FCC testing purposes only
+app.use(cors({ origin: '*' })); //For FCC testing purposes only
 
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(helmet.xssFilter());
-app.set('view engine','ejs');
+app.set('view engine', 'ejs');
 //Sample front-end
 app.route('/:project/')
   .get(function (req, res) {
@@ -45,10 +45,10 @@ app.route('/')
 fccTestingRoutes(app);
 
 //Routing for API 
-apiRoutes(app);  
-    
+apiRoutes(app);
+
 //404 Not Found Middleware
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.status(404)
     .type('text')
     .send('Not Found');
@@ -57,12 +57,12 @@ app.use(function(req, res, next) {
 //Start our server and tests!
 const listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
-  if(process.env.NODE_ENV==='test') {
+  if (process.env.NODE_ENV === 'test') {
     console.log('Running Tests...');
     setTimeout(function () {
       try {
         runner.run();
-      } catch(e) {
+      } catch (e) {
         console.log('Tests are not valid:');
         console.error(e);
       }
