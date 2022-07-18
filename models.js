@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
-// Schema
+// IssueSchema
 const IssueSchema = new Schema({
     issue_id: { type: String, require: true },
     project_name: String,
@@ -23,23 +23,26 @@ const IssueSchema = new Schema({
 });
 const Issue = mongoose.model("IssueSchema", IssueSchema);
 
+// ProjectSchema
 const ProjectSchema = new Schema({
     project_name: { type: String, required: true },
     project_owner: String,
     project_status: { type: String, required: true },
-    start_date: String,
-    end_date: String,
+    start_date: Date,
+    end_date: Date,
     team_members: { type: String, required: true },
     total_issues: [IssueSchema]
 });
 const Project = mongoose.model("Project", ProjectSchema);
 
+// UserSchema
 const UserSchema = new Schema({
     name: { type: String, require: true },
     role: { type: String, require: true },
     mail: String,
 });
 const User = mongoose.model("User", UserSchema);
+
 // Schema Exports
 exports.Issue = Issue;
 exports.Project = Project;

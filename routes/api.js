@@ -30,3 +30,22 @@ module.exports = function (app) {
     });
 
 };
+
+// //Sample front-end
+// app.route('/:project/')
+//   .get(function (req, res) {
+//     res.sendFile(process.cwd() + '/views/issue.html');
+//   });
+// //Index page (static HTML)
+// app.route('/')
+//   .get(function (req, res) {
+//     res.sendFile(process.cwd() + '/views/index.html');
+//   });
+// //Routing for API 
+// apiRoutes(app);
+// //404 Not Found Middleware
+// app.use(function (req, res, next) {
+//   res.status(404)
+//     .type('text')
+//     .send('Not Found');
+// });
