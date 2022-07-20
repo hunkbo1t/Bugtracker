@@ -11,13 +11,15 @@ let path                  = require('path');
 require('dotenv').config();
 
 const issueRoutes         = require('./routes/Issue');
-const userRoutes          = require('./routes/User');
-const projectRoutes       = require('./routes/Project');
+const userRoutes          = require('./routes/User').default;
+const projectRoutes       = require('./routes/Project').default;
 const { default: helmet } = require('helmet');
+const router = require('./routes/User').default;
 
 const storage             = multer.diskStorage
 
 let app = express();
+
 
 app.use('/user',userRoutes);
 app.use('/issue',issueRoutes);
