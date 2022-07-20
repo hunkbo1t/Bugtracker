@@ -37,7 +37,7 @@ const Project = mongoose.model("Project", ProjectSchema);
 
 // UserSchema
 const UserSchema = new Schema({
-    name: { type: String, require: true },
+    username: { type: String, require: true },
     role: { type: String, require: true },
     mail: String,
 });
